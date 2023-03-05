@@ -1,5 +1,6 @@
 import random
 import time
+import subprocess
 
 
 def bubble_sort(list):
@@ -26,31 +27,33 @@ while i < 5000:
     i += 1
     # Build an unsorted list of 5000 items
 
-i = 0
-print("Unsorted List (First 20)")
-while i < 20:
-    print(unsorted[i])
-    i += 1
+# i = 0
+# print("Unsorted List (First 20)")
+# while i < 20:
+#     print(unsorted[i])
+#     i += 1
     # print first 20 items of unsorted list
 
 
 start_time = time.time()
 sorted = bubble_sort(unsorted)
 
-print()
+with open("one_pass_sort_output.txt", "w") as f:
+    f.write(str(sorted))
 
-i = 0
-print("Sorted List (First 20)")
-while i < 20:
-    print(sorted[i])
-    i += 1
+
+# i = 0
+# print("Sorted List (First 20)")
+# while i < 20:
+#     print(sorted[i])
+#     i += 1
     # print first 20 items of sorted list
 end_time = time.time()
 print("The bubble sort took", end_time - start_time, "seconds.")
 
 
 print()
-print("Partitioning unsorted list of 5000 integers into 2 sets of 2500 integers")
+print("Partitioning unsorted list of 5000 integers into 2 sets of 2500 integers...")
 print()
 
 # random.shuffle(unsorted)
@@ -77,20 +80,20 @@ def partitionBubbleSort(arr):
         partition1 = arr[:mid]
         partition2 = arr[mid:]
 
-        i = 0
-        print()
-        print("Unsorted Partition1 List (First 20)")
-        while i < 20:
-            print(partition1[i])
-            i += 1
+        # i = 0
+        # print()
+        # print("Unsorted Partition1 List (First 20)")
+        # while i < 20:
+        #     print(partition1[i])
+        #     i += 1
         # print first 20 items of partition1 list
 
-        i = 0
-        print()
-        print("Unsorted Partition2 List (First 20)")
-        while i < 20:
-            print(partition2[i])
-            i += 1
+        # i = 0
+        # print()
+        # print("Unsorted Partition2 List (First 20)")
+        # while i < 20:
+        #     print(partition2[i])
+        #     i += 1
         # print first 20 items of partition2 list
 
         partition1 = bubble_sort(partition1)
@@ -127,12 +130,12 @@ def mergeSort(subArr1, subArr2, sortedArr):
     # pick up the remaining elements and put in sorted array
 
 
-i = 0
-print()
-print("Unsorted List (First 20)")
-while i < 20:
-    print(unsorted[i])
-    i += 1
+# i = 0
+# print()
+# print("Unsorted List (First 20)")
+# while i < 20:
+#     print(unsorted[i])
+#     i += 1
     # print first 20 items of unsorted list
 
 start_time = time.time()
@@ -142,14 +145,31 @@ sortedArr = []
 partitionBubbleSort(unsorted)
 mergeSort(partition1, partition2, sorted)
 
-i = 0
-print()
-print("Sorted List (First 20)")
-while i < 20:
-    print(sorted[i])
-    i += 1
+with open("split_sort_output.txt", "w") as f:
+    f.write(str(sorted))
+
+# i = 0
+# print()
+# print("Sorted List (First 20)")
+# while i < 20:
+#     print(sorted[i])
+#     i += 1
     # print first 20 items of sorted list
 
 end_time = time.time()
 print("The bubble sorting of 2 partitioned sets and then applying mergeSort took",
       end_time - start_time, "seconds.")
+
+
+
+
+# Compare the contents of the two files using the "diff" command-line tool
+try:
+    output = subprocess.check_output(["diff", "split_sort_output.txt", "one_pass_sort_output.txt"])
+    if output:
+        print("Outputs of split-sort and one-pass sort differ")
+    else:
+        print()
+        print("Outputs of split-sort and one-pass sort are the same")
+except subprocess.CalledProcessError as e:
+    print("Error: ", e)
