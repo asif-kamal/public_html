@@ -2,8 +2,8 @@ import numpy as np
 import random
 
 # Input control variables
-Nm = 10
-R = 5
+Nm = 100
+R = 10
 
 # Generate M1 and M2
 M1 = np.random.rand(Nm, Nm)
@@ -14,10 +14,10 @@ Mout = np.zeros((Nm, Nm))
 
 # i-j-k loop for Mout=M1*M2
 for r in range(R):
-    for j in range(Nm):
-        for i in range(Nm):
-            for k in range(Nm):
-                Mout[j,i] += M1[j,k] * M2[k,i]
+    for k in range(Nm):
+        for j in range(Nm):
+            for i in range(Nm):
+                Mout[k,j] += M1[k,i] * M2[j,i]
 
     # Save output to "mout1.txt"
     np.savetxt(f"mout1_{r}.txt", Mout)
@@ -27,10 +27,10 @@ for r in range(R):
 
 # i-k-j loop for Mout=M1*M2
 for r in range(R):
-    for j in range(Nm):
-        for k in range(Nm):
-            for i in range(Nm):
-                Mout[j,i] += M1[j,k] * M2[k,i]
+    for k in range(Nm):
+        for i in range(Nm):
+            for j in range(Nm):
+                Mout[k,j] += M1[k,i] * M2[j,i]
 
     # Save output to "mout2.txt"
     np.savetxt(f"mout2_{r}.txt", Mout)
@@ -54,3 +54,5 @@ else:
 #     print (“Differences found:”+”|”+out+”|”)
 # else:
 #    print (“No differences found”) 
+
+# no differences were found in all the permutations
