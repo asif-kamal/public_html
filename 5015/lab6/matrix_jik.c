@@ -31,19 +31,19 @@ t0 = wall_clock();
 /* Switch j and k can give better results */
 for (j=0; j < N; j++)
     for (i=0; i < N; i++)
-        for (k=0; k < N; k++)
-            C[i][j] += A[i][k]*B[k][j];
+for (k=0; k < N; k++)
+C[i][j] += A[i][k]*B[k][j];
 t1 = wall_clock() - t0;
 fd = fopen("matrix.log", "a");
 fprintf(fd, "%d %f %f\n", N, t1, ((N*N)/t1)*N);
-printf ("Host(%s)[j-i-k] Size(%d) Elapsed (us):(%f) MFLOPS:(%f)\n", 
-    host,N, t1, ((N*N)/t1)*N);
+   printf ("Host(%s)[j-i-k] Size(%d) Elapsed (us):(%f) MFLOPS:(%f)\n", 
+host,N, t1, ((N*N)/t1)*N);
 if (argc > 1) {
-    for (i=0; i<N; i++)
-    {
-        for (j=0; j<N; j++) fprintf(fd, "%8.1f ",C[i][j]);
-        fprintf(fd,"\n");
-    }
+for (i=0; i<N; i++)
+{
+for (j=0; j<N; j++) fprintf(fd, "%8.1f ",C[i][j]);
+fprintf(fd,"\n");
+}
 }
 fclose(fd);
 }
