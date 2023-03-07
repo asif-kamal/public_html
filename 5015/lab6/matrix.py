@@ -4,8 +4,8 @@ import subprocess
 from datetime import datetime
 
 # Input control variables
-Nm = 10
-R = 1
+Nm = 100
+R = 2
 
 # Generate M1 and M2
 M1 = np.random.rand(Nm, Nm)
