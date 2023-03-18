@@ -91,3 +91,6 @@ try:
         print("Outputs of split-sort and one-pass sort are the same")
 except subprocess.CalledProcessError as e:
     print("Error: ", e)
+
+subprocess.run(["rm","split_sort_output.txt"])
+subprocess.run(["rm","one_pass_sort_output.txt"])

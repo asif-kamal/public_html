@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Input control variables
 Nm = 100
-R = 2
+R = 10
 
 # Generate M1 and M2
 M1 = np.random.rand(Nm, Nm)
@@ -40,7 +40,75 @@ output = subprocess.check_output(["diff", "mout1.txt", "mout2.txt"])
 if len(output) != 0:
     print ("Differences found:"+"|"+output+"|")
 else:
-   print ("No differences found") 
+   print ("No differences found (i-k-j)") 
+
+Mout = np.zeros((Nm, Nm))
+
+# j-i-k loop for Mout=M1*M2
+for j in range(Nm):
+    for i in range(Nm):
+        for k in range(Nm):
+            Mout[i,j] += M1[i,k] * M2[k,j]
+
+    # Save output to "mout2.txt"
+np.savetxt(f"mout2.txt", Mout)
+
+output = subprocess.check_output(["diff", "mout1.txt", "mout2.txt"])
+if len(output) != 0:
+    print ("Differences found:"+"|"+output+"|")
+else:
+   print ("No differences found (j-i-k)") 
+
+Mout = np.zeros((Nm, Nm))
+
+# j-k-i loop for Mout=M1*M2
+for j in range(Nm):
+    for k in range(Nm):
+        for i in range(Nm):
+            Mout[i,j] += M1[i,k] * M2[k,j]
+
+    # Save output to "mout2.txt"
+np.savetxt(f"mout2.txt", Mout)
+
+output = subprocess.check_output(["diff", "mout1.txt", "mout2.txt"])
+if len(output) != 0:
+    print ("Differences found:"+"|"+output+"|")
+else:
+   print ("No differences found (j-k-i)") 
+
+Mout = np.zeros((Nm, Nm))
+
+# k-i-j loop for Mout=M1*M2
+for k in range(Nm):
+    for i in range(Nm):
+        for j in range(Nm):
+            Mout[i,j] += M1[i,k] * M2[k,j]
+
+    # Save output to "mout2.txt"
+np.savetxt(f"mout2.txt", Mout)
+
+output = subprocess.check_output(["diff", "mout1.txt", "mout2.txt"])
+if len(output) != 0:
+    print ("Differences found:"+"|"+output+"|")
+else:
+   print ("No differences found (k-i-j)") 
+
+Mout = np.zeros((Nm, Nm))
+
+# k-j-i loop for Mout=M1*M2
+for k in range(Nm):
+    for j in range(Nm):
+        for i in range(Nm):
+            Mout[i,j] += M1[i,k] * M2[k,j]
+
+    # Save output to "mout2.txt"
+np.savetxt(f"mout2.txt", Mout)
+
+output = subprocess.check_output(["diff", "mout1.txt", "mout2.txt"])
+if len(output) != 0:
+    print ("Differences found:"+"|"+output+"|")
+else:
+   print ("No differences found (k-j-i)") 
 
 subprocess.run(["rm","mout1.txt"])
 subprocess.run(["rm","mout2.txt"])
@@ -54,13 +122,18 @@ subprocess.run(["sed","-i","s/#1/i/g","matrix_ijk.c"])
 subprocess.run(["sed","-i","s/#2/j/g","matrix_ijk.c"])
 subprocess.run(["sed","-i","s/#3/k/g","matrix_ijk.c"])
 subprocess.run(["gcc","-o","matrix_ijk","-DN="+str(Nm),"matrix_ijk.c" ])
+# result = subprocess.run(["gcc","-o","matrix_ijk","-DN="+str(Nm),"matrix_ijk.c" ], capture_output=True, text=True)
+# print(result.returncode)
+# print(result.stdout)
+# print(result.stderr)
+
 start_time = datetime.now()
 
 for i in range(R):
     subprocess.run(["./matrix_ijk"])
 
 elapsed_time = datetime.now() - start_time
-total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds/R))
+total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds)/R)
 w.write("matrix i-j-k:\n {N} {T} {M} \n".format(N=Nm, T= total_us, M=pow(Nm, 3)/total_us))
 
 #ikj
@@ -75,7 +148,7 @@ for i in range(R):
     subprocess.run(["./matrix_ikj"])
 
 elapsed_time = datetime.now() - start_time
-total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds/R))
+total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds)/R)
 w.write("matrix i-k-j:\n {N} {T} {M} \n".format(N=Nm, T= total_us, M=pow(Nm, 3)/total_us ))
 
 #jik
@@ -90,7 +163,7 @@ for i in range(R):
     subprocess.run(["./matrix_jik"])
 
 elapsed_time = datetime.now() - start_time
-total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds/R))
+total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds)/R)
 w.write("matrix j-i-k:\n {N} {T} {M} \n".format(N=Nm, T= total_us, M=pow(Nm, 3)/total_us ))
 
 #jki
@@ -105,7 +178,7 @@ for i in range(R):
     subprocess.run(["./matrix_jki"])
 
 elapsed_time = datetime.now() - start_time
-total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds/R))
+total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds)/R)
 w.write("matrix j-k-i:\n {N} {T} {M} \n".format(N=Nm, T= total_us, M=pow(Nm, 3)/total_us ))
 
 #kij
@@ -120,7 +193,7 @@ for i in range(R):
     subprocess.run(["./matrix_kij"])
 
 elapsed_time = datetime.now() - start_time
-total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds/R))
+total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds)/R)
 w.write("matrix k-i-j:\n {N} {T} {M} \n".format(N=Nm, T= total_us, M=pow(Nm, 3)/total_us ))
 
 #kji
@@ -135,7 +208,7 @@ for i in range(R):
     subprocess.run(["./matrix_kji"])
 
 elapsed_time = datetime.now() - start_time
-total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds/R))
+total_us = float((elapsed_time.seconds * 1000000 + elapsed_time.microseconds)/R)
 w.write("matrix k-j-i:\n {N} {T} {M} \n".format(N=Nm, T= total_us, M=pow(Nm, 3)/total_us ))
 w.close()
 
