@@ -7,13 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="Asif Kamal based on Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Asif's Lab 7 Responsive UI</title>
+    <title>Asif's Lab 8 - DOM and Event Scripting</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/26c1e0c249.js" crossorigin="anonymous"></script>
 
     <style>
         .bd-placeholder-img {
@@ -51,27 +53,31 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
+                        <li class="nav-item" id="showAll">
                             <a class="nav-link active" href="#">
-                                <span data-feather="home"></span>
+                                <!-- <span data-feather="home"></span> -->
+                                <i class="fa-solid fa-house"></i>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="run6_1">
                             <a class="nav-link" href="#">
-                                <span data-feather="refresh-cw"></span>
+                                <!-- <span data-feather="refresh-cw"></span> -->
+                                <i class="fa-solid fa-rotate"></i>
                                 Run Lab 6.1
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="run6_2">
                             <a class="nav-link" href="#">
-                                <span data-feather="refresh-cw"></span>
+                                <!-- <span data-feather="refresh-cw"></span> -->
+                                <i class="fa-solid fa-rotate"></i>
                                 Run Lab 6.2
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="report">
                             <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
+                                <!-- <span data-feather="file"></span> -->
+                                <i class="fa-regular fa-file"></i>
                                 Project Report
                             </a>
                         </li>
@@ -148,7 +154,7 @@
                         Lab 6.2 Online
                     </h2>
                     <div class="card" id="card6_2">
-                        <h6 class="card-header">Locality Mystery</h6>
+                        <h6 class="card-header">Locality and Matrix Performance</h6>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -176,7 +182,7 @@
                         Lab 6.1 Online
                     </h2>
                     <div class="card" id="card61">
-                        <h6 class="card-header">Sort Magic</h6>
+                        <h6 class="card-header">Sort Magic with Data Partitioning</h6>
                         <div class="card-body">
                             <h2 class="btn btn-primary btn-block" href="#card6_1">
                                 Magic of Bubble Sort
@@ -187,7 +193,7 @@
                 <br />
                 <div id="Report">
                     <h2 href="#projectReport">
-                        Lab 6 Report
+                        Lab 6 Project Report
                     </h2>
                     <div class="card" id="projectReport">
                         <h6 class="card-header">Asif Kamal - 2023/03/08</h6>
