@@ -10,6 +10,11 @@ var scalabilityBtn_state = 0;
 var bubbleBtn_state = 0;
 var projectReportBtn_state = 0;
 
+var loopRunBtn_state = 0;
+var performanceResultsBtn_state = 0;
+var scalabilityRunBtn_state = 0;
+
+
 $(document).ready(function () {
     $("#showAll").click(function () {
         if (db_state == 0) { //Hide all objects
@@ -96,32 +101,62 @@ $(document).ready(function () {
     $("#LoopBtn").click(function () {
         if (loopBtn_state == 0) {
             loopBtn_state = 1;
-            $("#LoopBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_2'>Loop Order Correctness Monitor Console</h2>");
+            $("#LoopBtn").html("Loop Order Correctness Monitor Console")
         } else {
             loopBtn_state = 0;
-            $("#LoopBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_2'>Loop Order Correctness Investigation</h2>");
+            $("#LoopBtn").html('Loop Order Correctness Investigation');
+        };
+    });
+
+    $("#LoopBtn").click(function () {
+        if (loopBtn_state == 0) {
+            loopRunBtn_state = 1;
+            $("#LoopRun").hide();
+        } else {
+            loopRunBtn_state = 0;
+            $("#LoopRun").show();
+        }
+    })
+
+    $("#PerformingBtn").click(function () {
+        if (performingBtn_state == 0) {
+            performingBtn_state = 1;
+            $("#PerformingBtn").html("Best Performing Order Monitor Console");
+        } else {
+            performingBtn_state = 0;
+            $("#PerformingBtn").html("Best Performing Order Investigation");
         };
     });
 
     $("#PerformingBtn").click(function () {
         if (performingBtn_state == 0) {
-            performingBtn_state = 1;
-            $("#PerformingBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_2'>Best Performing Order Monitor Console</h2>");
+            performanceResultsBtn_state = 1;
+            $("#Results").hide();
         } else {
-            performingBtn_state = 0;
-            $("#PerformingBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_2'>Best Performing Order Investigation</h2>");
+            performanceResultsBtn_state = 0;
+            $("#Results").show();
         };
     });
 
     $("#ScalabilityBtn").click(function () {
         if (scalabilityBtn_state == 0) {
             scalabilityBtn_state = 1;
-            $("#ScalabilityBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_2'>Best Order Scalability Monitor</h2>");
+            $("#ScalabilityBtn").html("Best Order Scalability Monitor");
         } else {
             scalabilityBtn_state = 0;
-            $("#ScalabilityBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_2'>Best Order Scalability Investigation</h2>");
+            $("#ScalabilityBtn").html("Best Order Scalability Investigation");
         };
     });
+
+    $("#ScalabilityBtn").click(function () {
+        if (scalabilityBtn_state == 0) {
+            scalabilityRunBtn_state = 1;
+            $("#ScalabilityRun").hide();
+        } else {
+            scalabilityRunBtn_state = 0;
+            $("#ScalabilityRun").show();
+        }
+    })
 
     $("#BubbleBtn").click(function () {
         if (bubbleBtn_state == 0) {
@@ -141,5 +176,9 @@ $(document).ready(function () {
             projectReportBtn_state = 0;
             $("#projectReportBtn").html("<h2 class='btn btn-primary btn-block' href='#projectReport'>Details</h2>");
         };
+    });
+
+    $('#chevron-change_6_2').click(function () {
+        $(this).find('i.fa-solid').toggleClass('fa-chevron-down fa-chevron-up');
     });
 });
