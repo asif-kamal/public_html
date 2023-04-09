@@ -42,12 +42,12 @@
   try {    
       $mail->SMTPDebug = 2; // Wants to see all errors   
       $mail->IsSMTP();   
-      $mail->Host="smtp.gmail.com";   
+      $mail->Host="XXXX.gmail.com";   
       $mail->SMTPAuth=true;   
       $mail->Username="XXXXXXX@gmail.com";   
       $mail->Password = "YYYYYYYY"; // gmail AppPassword   
       $mail->SMTPSecure = "ssl";   
-      $mail->Port=465;   
+      $mail->Port=XXX;   
       $mail->SMTPKeepAlive = true;   
       $mail->Mailer = "smtp";   
       $mail->setFrom("tua90776@temple.edu", "CIS5015 Dev");   
