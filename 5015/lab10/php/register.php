@@ -44,8 +44,8 @@
       $mail->IsSMTP();   
       $mail->Host="smtp.gmail.com";   
       $mail->SMTPAuth=true;   
-      $mail->Username="pub.67709aut@gmail.com";   
-      $mail->Password = "ntvorfzxdnxlmcyf"; // gmail AppPassword   
+      $mail->Username="XXXXXXX@gmail.com";   
+      $mail->Password = "YYYYYYYY"; // gmail AppPassword   
       $mail->SMTPSecure = "ssl";   
       $mail->Port=465;   
       $mail->SMTPKeepAlive = true;   
