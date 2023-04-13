@@ -1,6 +1,11 @@
 <?php
-  session_start();
+    session_start();
+    if (!isset($_SESSION["RegState"])) {
+      $_SESSION["RegState"] = 0;
+    }
+    if ($_SESSION["RegState"] == 4) header("Location:dashboard.php");
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -38,15 +43,18 @@
   <link href="css/signin.css" rel="stylesheet">
   <script src="js/jquery-3.6.4.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script>
+  <!-- <script>
     $(document).ready(() => {
       $("#loginForm").hide();
-      $("#setPasswordForm").hide();
+      $("#registerForm").hide();
     });
-  </script>
+  </script> -->
 </head>
 
 <body class="text-center">
+<?php
+	if (($_SESSION["RegState"] <= 0) || ($_SESSION["RegState"] == 2)){
+?>
   <!-- Login Form -->
   <form class="form-signin" id="loginForm" action="php/login.php" method="POST">
     <img class="mb-4" src="images/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -62,12 +70,20 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <div class="alert alert-info mt-2" id="messageBox">
+    <?php
+        print $_SESSION["Message"];
+        $_SESSION["Message"] = "";
+    ?>
     </div>
     <br />
-    <a href="php/register.php">Register</a> | <a href="php/forget.php">Forget?</a>
+    <a href="php/register0.php">Register</a> | <a href="php/forget.php">Forget?</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
   </form>
 
+  <?php
+	    } 
+	    if ($_SESSION["RegState"] == 1) {  // When "register" is clicked
+  ?>
   <!-- Registration Form -->
   <form class="form-signin" id="registerForm" action="php/register.php" method="GET">
     <img class="mb-4" src="images/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -86,10 +102,16 @@
       ?>
     </div>
     <br />
+    <a href="php/returnBtn.php">
     <button type="button" id="returnButton">Return</button>
+      </a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
   </form>
 
+  <?php
+	    }
+	    if ($_SESSION["RegState"] == 3) { // after email is authenticated
+  ?>
   <!-- Set Password Form -->
   <form class="form-signin" id="setPasswordForm" action="php/setPassword.php" method="POST">
     <img class="mb-4" src="images/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -99,11 +121,19 @@
     <!-- <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required autofocus> -->
     <button class="btn btn-lg btn-primary btn-block" type="submit">Set Password</button>
-    <div class="alert alert-info mt-2" id="SPmessageBox"></div>
+    <div class="alert alert-info mt-2" id="SPmessageBox">
+    <?php
+        print $_SESSION["Message"];
+        $_SESSION["Message"] = "";
+    ?>
+    </div>
     <br />
     <button type="button" id="loginButton">Login</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
   </form>
+  <?php
+	    } 
+  ?>
 
 </body>
 
