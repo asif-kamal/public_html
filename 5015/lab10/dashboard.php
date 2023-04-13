@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if ($_SESSION["RegState"] != 4) {
+        $_SESSION["RegState"] = 0;
+        $_SESSION["Message"] = "Please Login.";
+        header("Location:index.php");
+        exit();
+    }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -7,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Asif Kamal based on Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Asif's Lab 8 - DOM and Event Scripting</title>
+    <title>Asif's Lab 10 - Secure Web Service I</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 
@@ -52,7 +61,7 @@
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
+                <a class="nav-link" href="php/logout.php">Sign out</a>
             </li>
         </ul>
     </nav>
