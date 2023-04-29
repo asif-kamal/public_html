@@ -1,0 +1,2 @@
+CG counts out of all bases: 51%
+CG counts out of all bases: 50.354964503549645%
