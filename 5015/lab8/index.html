@@ -7,13 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="Asif Kamal based on Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Asif's Lab 7 Responsive UI</title>
+    <title>Asif's Lab 8 - DOM and Event Scripting</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
 
     <style>
         .bd-placeholder-img {
@@ -33,6 +34,16 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <!--load all Font Awesome styles -->
+    <link href="css/fa/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="js/fa/all.min.js" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/feather.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/lab_8.js"></script>
 </head>
 
 <body>
@@ -51,28 +62,32 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
+                        <li class="nav-item" id="showAll">
                             <a class="nav-link active" href="#">
-                                <span data-feather="home"></span>
-                                Dashboard <span class="sr-only">(current)</span>
+                                <!-- <span data-feather="home"></span> -->
+                                <i class="fa-solid fa-minus"></i>
+                                Hide Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="run6_1">
                             <a class="nav-link" href="#">
-                                <span data-feather="refresh-cw"></span>
-                                Run Lab 6.1
+                                <!-- <span data-feather="refresh-cw"></span> -->
+                                <i class="fa-solid fa-stop"></i>
+                                Hide Lab 6.1
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="run6_2">
                             <a class="nav-link" href="#">
-                                <span data-feather="refresh-cw"></span>
-                                Run Lab 6.2
+                                <!-- <span data-feather="refresh-cw"></span> -->
+                                <i class="fa-solid fa-stop"></i>
+                                Hide Lab 6.2
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="report">
                             <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Project Report
+                                <!-- <span data-feather="file"></span> -->
+                                <i class="fa-solid fa-stop"></i>
+                                Hide Project Report
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -144,24 +159,25 @@
                 <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
                 <div id="Lab6_2">
-                    <h2 href="#card6_2">
+                    <h2 data-toggle="collapse" href="#card6_2">
                         Lab 6.2 Online
+                        <i class="fa-solid fa-chevron-down"></i>
                     </h2>
                     <div class="card" id="card6_2">
-                        <h6 class="card-header">Locality Mystery</h6>
+                        <h6 class="card-header">Locality and Matrix Performance</h6>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
+                                <li class="list-group-item" id="LoopBtn">
                                     <h2 class="btn btn-primary btn-block" href="#card6_2">
-                                        Loop Order Corectness Investigation
+                                        Loop Order Correctness Investigation
                                     </h2>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" id="PerformingBtn">
                                     <h2 class="btn btn-primary btn-block" href="#card6_2">
                                         Best Performing Order Investigation
                                     </h2>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item" id="ScalabilityBtn">
                                     <h2 class="btn btn-primary btn-block" href="#card6_2">
                                         Best Order Scalability Investigation
                                     </h2>
@@ -172,12 +188,13 @@
                 </div>
                 <br />
                 <div id="Lab6_1">
-                    <h2 href="#card6_1">
+                    <h2 data-toggle="collapse" href="#card6_1">
                         Lab 6.1 Online
+                        <i class="fa-solid fa-chevron-down"></i>
                     </h2>
-                    <div class="card" id="card61">
-                        <h6 class="card-header">Sort Magic</h6>
-                        <div class="card-body">
+                    <div class="card" id="card6_1">
+                        <h6 class="card-header">Sort Magic with Data Partitioning</h6>
+                        <div class="card-body" id="BubbleBtn">
                             <h2 class="btn btn-primary btn-block" href="#card6_1">
                                 Magic of Bubble Sort
                             </h2>
@@ -186,12 +203,13 @@
                 </div>
                 <br />
                 <div id="Report">
-                    <h2 href="#projectReport">
-                        Lab 6 Report
+                    <h2 data-toggle="collapse" href="#projectReport">
+                        Lab 6 Project Report
+                        <i class="fa-solid fa-chevron-down"></i>
                     </h2>
                     <div class="card" id="projectReport">
                         <h6 class="card-header">Asif Kamal - 2023/03/08</h6>
-                        <div class="card-body">
+                        <div class="card-body" id="projectReportBtn">
                             <h2 class="btn btn-primary btn-block" href="#projectReport">
                                 Details
                             </h2>
@@ -330,11 +348,6 @@
             </main>
         </div>
     </div>
-    <script src="js/jquery-3.6.4.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/feather.min.js"></script>
-    <script src="js/Chart.min.js"></script>
-    <script src="js/dashboard.js"></script>
 </body>
 
 </html>
