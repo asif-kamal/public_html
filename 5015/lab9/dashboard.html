@@ -90,54 +90,6 @@
                                 Hide Project Report
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Reports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Integrations
-                            </a>
-                        </li> -->
-                    </ul>
-
-                    <!-- <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Current month
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Last quarter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Social engagement
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Year-end sale
-                            </a>
-                        </li>
-                    </ul>
-                </div> -->
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -171,11 +123,19 @@
                                     <h2 class="btn btn-primary btn-block" id="LoopBtn" href="#card6_2">
                                         Loop Order Correctness Investigation
                                     </h2>
-                                    <div id="LoopRun" class="input-group mb-3"><span
-                                            class="input-group-text">Size(3-20):</span>
-                                        <input type="number" class="form-control" value="0" min="3" max="20"
-                                            id="number-input">
-                                        <button class="btn btn-primary" type="button" id="run-btn">Run</button>
+                                    <div id="LoopRun" class="input-group mb-3">
+                                        <form>
+                                            Size(3-20):
+                                            <input type="number" name="mSize" min="3" max="20" required>
+                                            <button id="lab6_2a" class="btn btn-medium btn-primary">Run</button>
+                                        </form>
+                                        <hr>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <h5>Results:</h5>
+                                                <div id="results6_2a"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
@@ -198,15 +158,17 @@
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Run</button>
                                                 </form>
-                                                <div class="mt-3">
-                                                    <h5>Results:</h5>
-                                                    <p id="results"></p>
-                                                </div>
                                             </div>
                                         </div>
-                                        <h2 class="btn btn-primary" href="#Plot">
-                                            Plot Chart
-                                        </h2>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <h5>Results:</h5>
+                                                <div id="results6_2b"></div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <button id="plot6_2b" class="btn btn-primary">Plot</button>
+                                        <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
@@ -217,11 +179,19 @@
                                         <h5>Loop Order and Inputs:</h5>
                                         <div class="row">
                                             <div class="col">
-                                                <form>
+                                                <form class="form-signin align-items-center">
                                                     <div class="mb-3">
                                                         <label for="loopOrder" class="form-label">Loop Order</label>
-                                                        <input type="text" class="form-control" id="loopOrder"
+                                                        <input type="text" list="order" class="mb-2" name="loopOrder"
                                                             placeholder="Enter loop order">
+                                                        <datalist id="order">
+                                                            <option value="ijk"></option>
+                                                            <option value="ikj"></option>
+                                                            <option value="jik"></option>
+                                                            <option value="jki"></option>
+                                                            <option value="kij"></option>
+                                                            <option value="kji"></option>
+                                                        </datalist>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="input1" class="form-label">Input 1</label>
@@ -245,14 +215,13 @@
                                         <div class="row mt-3">
                                             <div class="col">
                                                 <h5>Results:</h5>
-                                                <div id="results"></div>
+                                                <div id="results6_2c"></div>
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
-                                            <div class="col">
-                                                <button type="button" class="btn btn-primary">Plot Chart</button>
-                                            </div>
-                                        </div>
+                                        <hr>
+                                        <button id="plot6_2c" class="btn btn-primary">Plot</button>
+                                        <canvas class="my-4" id="myChart2" width="900" height="380"></canvas>
+
                                     </div>
                                 </li>
                             </ul>
@@ -261,16 +230,42 @@
                 </div>
                 <br />
                 <div id="Lab6_1">
-                    <h2 data-toggle="collapse" href="#card6_1">
+                    <h2 data-toggle="collapse" id="chevronLabSixOne" href="#card6_1">
                         Lab 6.1 Online
                         <i class="fa-solid fa-chevron-down"></i>
                     </h2>
-                    <div class="card" id="card6_1">
-                        <h6 class="card-header">Sort Magic with Data Partitioning</h6>
-                        <div class="card-body" id="BubbleBtn">
-                            <h2 class="btn btn-primary btn-block" href="#card6_1">
-                                Magic of Bubble Sort
-                            </h2>
+                    <div class="card collapse" id="Lab6_1_online" style="width: 100%;">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5>Sort Magic</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <span class="btn btn-primary btn-block" id="BubbleBtn" data-toggle="collapse"
+                                    href="#bubbleSort">
+                                    Magic of Bubble Sorting
+                                </span>
+                                <div id="bubbleSort" class="collapse">
+                                    <form class="form-signin">
+                                        <div class="row">
+                                            <input type="number" name="sSize" min="1000" max="9000"
+                                                class="col form-control" placeholder="Sort size(N) [1000-9000]"
+                                                required>
+                                            <input type="number" name="sRep" min="1" max="5" class="col form-control"
+                                                placeholder="Repeat[1-5]" required>
+                                        </div>
+                                        <button id="lab42" class="btn btn-small btn-primary mt-2">
+                                            Run
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div id="bubbleMonitor" class="card-body">
+                                        Results
+                                    </div>
+                                    <hr>
+                                    <button id="plot42" class="btn btn-primary">Plot</button>
+                                    <canvas class="my-4" id="myChart3" width="900" height="380"></canvas>
+                                </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -278,146 +273,23 @@
                 <div id="Report">
                     <h2 data-toggle="collapse" href="#projectReport">
                         Lab 6 Project Report
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i class="fa-solid fa-chevron-down" id="chevronLabSixReport"></i>
                     </h2>
-                    <div class="card" id="projectReport">
+                    <div class="card collapse" id="projectReport">
                         <h6 class="card-header">Asif Kamal - 2023/03/08</h6>
-                        <div class="card-body" id="projectReportBtn">
-                            <h2 class="btn btn-primary btn-block" href="#projectReport">
-                                Details
-                            </h2>
+                        <div class="card-body" id="projectReportCard">
+                            <ul class="list-group">
+                                <span class="btn btn-primary btn-small" id="projectReportBtn" data-toggle="collapse"
+                                    href="#projectReport">
+                                    Details
+                                </span>
+                                <div id="projectFinalReport" class="collapse">
+                                    This is the final project report.
+                                </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <!-- <h2>Section title</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>Lorem</td>
-                                <td>ipsum</td>
-                                <td>dolor</td>
-                                <td>sit</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>amet</td>
-                                <td>consectetur</td>
-                                <td>adipiscing</td>
-                                <td>elit</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>Integer</td>
-                                <td>nec</td>
-                                <td>odio</td>
-                                <td>Praesent</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>libero</td>
-                                <td>Sed</td>
-                                <td>cursus</td>
-                                <td>ante</td>
-                            </tr>
-                            <tr>
-                                <td>1,004</td>
-                                <td>dapibus</td>
-                                <td>diam</td>
-                                <td>Sed</td>
-                                <td>nisi</td>
-                            </tr>
-                            <tr>
-                                <td>1,005</td>
-                                <td>Nulla</td>
-                                <td>quis</td>
-                                <td>sem</td>
-                                <td>at</td>
-                            </tr>
-                            <tr>
-                                <td>1,006</td>
-                                <td>nibh</td>
-                                <td>elementum</td>
-                                <td>imperdiet</td>
-                                <td>Duis</td>
-                            </tr>
-                            <tr>
-                                <td>1,007</td>
-                                <td>sagittis</td>
-                                <td>ipsum</td>
-                                <td>Praesent</td>
-                                <td>mauris</td>
-                            </tr>
-                            <tr>
-                                <td>1,008</td>
-                                <td>Fusce</td>
-                                <td>nec</td>
-                                <td>tellus</td>
-                                <td>sed</td>
-                            </tr>
-                            <tr>
-                                <td>1,009</td>
-                                <td>augue</td>
-                                <td>semper</td>
-                                <td>porta</td>
-                                <td>Mauris</td>
-                            </tr>
-                            <tr>
-                                <td>1,010</td>
-                                <td>massa</td>
-                                <td>Vestibulum</td>
-                                <td>lacinia</td>
-                                <td>arcu</td>
-                            </tr>
-                            <tr>
-                                <td>1,011</td>
-                                <td>eget</td>
-                                <td>nulla</td>
-                                <td>Class</td>
-                                <td>aptent</td>
-                            </tr>
-                            <tr>
-                                <td>1,012</td>
-                                <td>taciti</td>
-                                <td>sociosqu</td>
-                                <td>ad</td>
-                                <td>litora</td>
-                            </tr>
-                            <tr>
-                                <td>1,013</td>
-                                <td>torquent</td>
-                                <td>per</td>
-                                <td>conubia</td>
-                                <td>nostra</td>
-                            </tr>
-                            <tr>
-                                <td>1,014</td>
-                                <td>per</td>
-                                <td>inceptos</td>
-                                <td>himenaeos</td>
-                                <td>Curabitur</td>
-                            </tr>
-                            <tr>
-                                <td>1,015</td>
-                                <td>sodales</td>
-                                <td>ligula</td>
-                                <td>in</td>
-                                <td>libero</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
             </main>
         </div>
     </div>

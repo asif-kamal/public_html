@@ -8,7 +8,9 @@ var performingBtn_state = 0;
 var scalabilityBtn_state = 0;
 
 var bubbleBtn_state = 0;
+var chevronLabSixOne_state = 0;
 var projectReportBtn_state = 0;
+var chevronLabSixReport_state = 0;
 
 var loopRunBtn_state = 0;
 var performanceResultsBtn_state = 0;
@@ -161,24 +163,48 @@ $(document).ready(function () {
     $("#BubbleBtn").click(function () {
         if (bubbleBtn_state == 0) {
             bubbleBtn_state = 1;
-            $("#BubbleBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_1'>Magic of Bubble Sort Console</h2>");
+            $("#bubbleSort").hide();
+            $("#BubbleBtn").text("Magic of Bubble Sort Console");
         } else {
             bubbleBtn_state = 0;
-            $("#BubbleBtn").html("<h2 class='btn btn-primary btn-block' href='#card6_1'>Magic of Bubble Sort</h2>");
+            $("#bubbleSort").show();
+            $("#BubbleBtn").html("<h7>Magic of Bubble Sort</h7>");
         };
     });
 
     $("#projectReportBtn").click(function () {
         if (projectReportBtn_state == 0) {
             projectReportBtn_state = 1;
-            $("#projectReportBtn").html("<h2 class='btn btn-primary btn-block' href='#projectReport'>Project Report</h2>");
+            $("#projectFinalReport").hide();
+            $("#projectReportBtn").text("Project Report");
         } else {
             projectReportBtn_state = 0;
-            $("#projectReportBtn").html("<h2 class='btn btn-primary btn-block' href='#projectReport'>Details</h2>");
+            $("#projectFinalReport").show();
+            $("#projectReportBtn").html("<h7>Details</h7>");
         };
     });
 
     $('#chevron-change_6_2').click(function () {
         $(this).find('i.fa-solid').toggleClass('fa-chevron-down fa-chevron-up');
+    });
+
+    $('#chevronLabSixOne').click(() => {
+        if (chevronLabSixOne_state = 0) {
+            chevronLabSixOne_state = 1;
+            $("#Lab6_1_online").toggle();
+        } else {
+            chevronLabSixOne_state = 0;
+            $("#Lab6_1_online").toggle();
+        };
+    });
+
+    $('#chevronLabSixReport').click(() => {
+        if (chevronLabSixReport_state = 0) {
+            chevronLabSixReport_state = 1;
+            $("#projectReport").toggle();
+        } else {
+            chevronLabSixReport_state = 0;
+            $("#projectReport").toggle();
+        };
     });
 });
