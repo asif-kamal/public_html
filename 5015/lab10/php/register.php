@@ -25,7 +25,7 @@
   //Build insert query
   $Acode = rand();
   $Rdatetime = date("Y-m-d h:i:s");
-  $query = "Insert into Users (FirstName, LastName, Email, Acode, Rdatetime) values 
+  $query = "INSERT INTO Users (FirstName, LastName, Email, Acode, Rdatetime) VALUES 
   ('$FirstName','$LastName','$Email','$Acode','$Rdatetime');";
   $result = mysqli_query($con, $query);
   if (!$result) {
@@ -42,18 +42,18 @@
   try {    
       $mail->SMTPDebug = 2; // Wants to see all errors   
       $mail->IsSMTP();   
-      $mail->Host="ZZZZ.gmail.com";   
+      $mail->Host="smtp.gmail.com";   
       $mail->SMTPAuth=true;   
-      $mail->Username="XXXXX@gmail.com";   
-      $mail->Password = "YYYYYYYYY"; // gmail AppPassword   
+      $mail->Username="pub.67709aut@gmail.com";   
+      $mail->Password = "fqaklvlvqovkwnvv"; // gmail AppPassword   
       $mail->SMTPSecure = "ssl";   
-      $mail->Port=***;   
+      $mail->Port=465;   
       $mail->SMTPKeepAlive = true;   
       $mail->Mailer = "smtp";   
       $mail->setFrom("tua90776@temple.edu", "CIS5015 Dev");   
       $mail->addReplyTo("tua90776@temple.edu","CIS5015 Dev");   
       $msg = "Please click link to authenticate: 
-      http://cis-linux2.temple.edu/~yourID/5015/lab10/php/authenticate.php?Email=$toEmail&Acode=$Acode";   
+      https://cis-linux2.temple.edu/~tua90776/5015/lab10/php/authenticate.php?Email=$Email&Acode=$Acode";   
       $mail->addAddress($Email,"$FirstName $LastName"); //Modified $ToEmailAddress to $Email  
       $mail->Subject = "Welcome";   
       $mail->Body = $msg;   
@@ -66,6 +66,6 @@
       $_SESSION["RegState"] = 1;   
       print "Mail send failed: ".$e->errorMessage;    
     }  
-    // header("location:../index.php");  
+    header("location:../index.php");  
     exit(); 
 ?>
